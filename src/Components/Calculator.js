@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Components/Style.css";
 
 export default function Calculator() {
@@ -35,6 +35,7 @@ export default function Calculator() {
       set_second("");
     }
   }
+
   function handleClick(e) {
     if (
       e.target.innerText === "÷" ||
@@ -61,6 +62,8 @@ export default function Calculator() {
       set_second([...second, e.target.innerText]);
     }
     if (e.target.innerText === "=") {
+      if (!second) return 0;
+      if (!current) return 0;
       const input1 = current.toString().split(",").join("");
       const input2 = second.toString().split(",").join("");
       set_top(`${input1}${operator}${input2}`);
